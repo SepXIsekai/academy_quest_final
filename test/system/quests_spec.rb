@@ -34,4 +34,18 @@ RSpec.describe "Quests Management", type: :system do
 
     expect(page).not_to have_content(@quest.activity)
   end
+
+  it "navigates to My Brags page from the button under profile" do
+    visit quests_path
+
+    # ตรวจสอบว่าปุ่มมีอยู่
+    expect(page).to have_link("My Brags Document", href: brags_path)
+
+    # กดปุ่ม
+    click_link "My Brags"
+
+    # ตรวจสอบว่าอยู่บนหน้า brags index
+    expect(page).to have_current_path(brags_path)
+    expect(page).to have_content("My Brags") # สมมติว่ามี title แบบนี้
+  end
 end
