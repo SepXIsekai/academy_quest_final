@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
-  resources :quests, only: [ :index, :create, :destroy ]
+  resources :quests, only: [ :index, :create, :destroy ] do
+    member do
+      patch :toggle_status
+    end
+  end
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
   root "quests#index"
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
