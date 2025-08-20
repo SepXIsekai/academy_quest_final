@@ -5,18 +5,18 @@ class QuestsControllerTest < ActionDispatch::IntegrationTest
     @quest = quests(:one)
   end
 
-  # test "should get index" do
-  #   get quests_url
-  #   assert_response :success
-  # end
+  test "should get index" do
+    get quests_url
+    assert_response :success
+  end
 
-  # test "should create quest" do
-  #   assert_difference("Quest.count") do
-  #     post quests_url, params: { quest: { activity: @quest.activity } }
-  #   end
+  test "should create quest" do
+    assert_difference("Quest.count") do
+      post quests_url, params: { quest: { activity: @quest.activity } }
+    end
 
-  #   assert_redirected_to quest_url(Quest.last)
-  # end
+    assert_redirected_to quests_path
+  end
 
   # test "should destroy quest" do
   #   assert_difference("Quest.count", -1) do
