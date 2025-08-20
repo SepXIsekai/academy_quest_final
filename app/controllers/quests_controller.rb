@@ -28,7 +28,7 @@ class QuestsController < ApplicationController
     @quest.destroy!
 
     respond_to do |format|
-      format.html { redirect_to quests_path, notice: "Quest was successfully destroyed.", status: :see_other }
+      format.html { redirect_to quests_path, status: :see_other }
       format.json { head :no_content }
     end
   end
