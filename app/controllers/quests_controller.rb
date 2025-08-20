@@ -1,5 +1,5 @@
 class QuestsController < ApplicationController
-  before_action :set_quest, only: %i[destroy ]
+  before_action :set_quest, only: %i[destroy toggle_status]
 
   # GET /quests or /quests.json
   def index
@@ -30,6 +30,15 @@ class QuestsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to quests_path, status: :see_other }
       format.json { head :no_content }
+    end
+  end
+
+  def toggle_status
+    @quest.update(status: !@quest.status)
+
+    respond_to do |format|
+      format.html { redirect_to quests_path }
+      format.json { render json: @quest, status: :ok }
     end
   end
 
