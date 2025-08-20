@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get "brags/index"
   resources :quests, only: [ :index, :create, :destroy ] do
     member do
       patch :toggle_status
