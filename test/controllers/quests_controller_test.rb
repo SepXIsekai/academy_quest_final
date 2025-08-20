@@ -18,11 +18,11 @@ class QuestsControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to quests_path
   end
 
-  # test "should destroy quest" do
-  #   assert_difference("Quest.count", -1) do
-  #     delete quest_url(@quest)
-  #   end
+  test "should destroy quest" do
+    assert_difference("Quest.count", -1) do
+      delete quest_url(@quest)
+    end
 
-  #   assert_redirected_to quests_url
-  # end
+    assert_redirected_to quests_url
+  end
 end
