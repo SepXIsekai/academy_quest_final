@@ -3,7 +3,7 @@ class QuestsController < ApplicationController
 
   # GET /quests or /quests.json
   def index
-    @quests = Quest.all
+    @quests = Quest.order(id: :desc)
     @quest = Quest.new
   end
 
