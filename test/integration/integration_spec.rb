@@ -6,15 +6,12 @@ RSpec.describe "Quests Management", type: :system do
     @quest = Quest.create!(activity: "Existing Quest")
   end
 
-  it "can add data to form" do
+  it "creates a new quest" do
     visit quests_path
-
     fill_in "quest_activity", with: "New Quest via Capybara"
-
-
-    expect(find_field("quest_activity").value).to eq("New Quest via Capybara")
+    click_button "Create Quest"
+    expect(page).to have_content("New Quest via Capybara")
   end
-
 
   it "toggles quest status" do
     visit quests_path
@@ -30,6 +27,14 @@ RSpec.describe "Quests Management", type: :system do
     end
   end
 
+  it "destroys a quest" do
+    visit quests_path
+
+    find("#destroy_quest_#{@quest.id}").click
+
+    expect(page).not_to have_content(@quest.activity)
+  end
+
   it "navigates to My Brags page from the button under profile" do
     visit quests_path
 
@@ -42,5 +47,19 @@ RSpec.describe "Quests Management", type: :system do
     # ตรวจสอบว่าอยู่บนหน้า brags index
     expect(page).to have_current_path(brags_path)
     expect(page).to have_content("My Brags") # สมมติว่ามี title แบบนี้
+  end
+
+  it "navigates to My Brags page from the button under profile" do
+    visit brags_path
+
+
+    expect(page).to have_link("Back to Quests")
+
+
+    click_link "Back to Quests"
+
+
+    expect(page).to have_current_path(quests_path)
+    expect(page).to have_content("Academy Quests")
   end
 end
