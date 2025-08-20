@@ -33,4 +33,12 @@ class QuestsControllerTest < ActionDispatch::IntegrationTest
     @quest.reload
     assert_not_equal original_status, @quest.status
   end
+
+  test "should not create quest with invalid data" do
+    assert_no_difference("Quest.count") do
+      post quests_url, params: { quest: { activity: "" } }
+    end
+
+    assert_response :unprocessable_entity
+  end
 end
