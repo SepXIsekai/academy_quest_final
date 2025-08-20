@@ -30,10 +30,14 @@ RSpec.describe "Quests Management", type: :system do
   it "destroys a quest" do
     visit quests_path
 
-    find("#destroy_quest_#{@quest.id}").click
+
+    page.accept_confirm do
+      find("#destroy_quest_#{@quest.id}").click
+    end
 
     expect(page).not_to have_content(@quest.activity)
   end
+
 
   it "navigates to My Brags page from the button under profile" do
     visit quests_path
