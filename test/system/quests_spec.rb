@@ -26,4 +26,12 @@ RSpec.describe "Quests Management", type: :system do
       expect(page).to have_checked_field("quest_status_#{@quest.id}")
     end
   end
+
+  it "destroys a quest" do
+    visit quests_path
+
+    find("#destroy_quest_#{@quest.id}").click
+
+    expect(page).not_to have_content(@quest.activity)
+  end
 end
