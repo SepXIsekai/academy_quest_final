@@ -30,10 +30,7 @@ RSpec.describe "Quests Management", type: :system do
   it "destroys a quest" do
     visit quests_path
 
-
-    page.accept_confirm do
-      find("#destroy_quest_#{@quest.id}").click
-    end
+    find("#destroy_quest_#{@quest.id}").click
 
     expect(page).not_to have_content(@quest.activity)
   end
